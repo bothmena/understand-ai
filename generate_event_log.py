@@ -82,7 +82,8 @@ def generate_events(frames_for_video: Dict[str, List[str]], num_events: int) -> 
         'Evelyn Turner',
     ]
     attributes = {
-        'label': ['car', 'pedestrian', 'rider', 'bicycle', 'motorcycle', 'bus', 'truck'],
+        'label': ['car', 'pedestrian', 'rider', 'bicycle', 'motorcycle', 'bus', 'truck',
+                  'traffic_light', 'traffic_light', 'traffic_light', 'traffic_light'],
         'is_parking': ['true', 'false'],
         'is_crossing': ['true', 'false']
     }
