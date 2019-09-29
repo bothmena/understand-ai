@@ -55,3 +55,13 @@ class DictionaryState(State):
             return self.state[group][key]
         except KeyError:
             return None
+
+    def remove(self, group: str, key: str):
+        """
+        removes an item from the state.
+
+        :param group: either frames or boxes
+        :param key: frame_id or box_id
+        """
+        if self.query(group, key) is not None:
+            del self.state[group][key]
