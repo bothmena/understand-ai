@@ -43,5 +43,9 @@ class State(SingletonService, metaclass=ABCMeta):
     def update(self, *args, **kwargs):
         """should query the state to get specific value"""
 
+    @abstractmethod
+    def remove(self, *args, **kwargs):
+        """should remove an item from the state"""
+
     def reset_state(self, *args, **kwargs):
         self.state = self.init_state(*args, **kwargs)
