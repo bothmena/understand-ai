@@ -1,4 +1,4 @@
-from abstract.service import State
+from abstract.interface import State
 from typing import Union
 from utils.exception.state import ItemExistException, ItemNotFoundException
 
@@ -31,7 +31,7 @@ class DictionaryState(State):
         else:
             raise ItemExistException()
 
-    def update(self, group: str, key: Union[str, int], value: dict):
+    def update(self, group: str, key: Union[str, int], value: Union[dict, tuple]):
         """
         update an existing item in the state
 
@@ -42,8 +42,13 @@ class DictionaryState(State):
         """
         if self.query(group, key) is None:
             raise ItemNotFoundException()
-        else:
+        elif isinstance(value, dict):
             self.state[group][key] = value
+        else:
+            if len(value) != 2:
+                raise ValueError('is value is a tuple it should have 2 and only 2 items: key and value')
+            att_key, att_val = value
+            self.state[group][key][att_key] = att_val
 
     def query(self, group: str, key: str) -> Union[dict, None]:
         """
